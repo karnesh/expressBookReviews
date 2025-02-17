@@ -138,7 +138,7 @@ async function getBookListAsync(url) {
 // Book list With Promise
 public_users.get('/promise', function (req, res) {
   try {
-    getBookListWithPromise('http://localhost:3000/') 
+    getBookListWithPromise('http://localhost:8000/') 
       .then(bookList => {
         res.json(bookList);
       })
@@ -155,7 +155,7 @@ public_users.get('/promise', function (req, res) {
 // Book list With Async
 public_users.get('/async', async function (req, res) {
   try {
-    const bookList = await getBookListAsync('http://localhost:3000/'); //
+    const bookList = await getBookListAsync('http://localhost:8000/'); //
     res.json(bookList);
   } catch (error) {
     console.error(error);
