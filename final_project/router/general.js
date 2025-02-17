@@ -224,4 +224,35 @@ public_users.get('/async/author/:author', async function (req, res) {
   }
 });
 
+// Task-13 With Promise
+public_users.get('/promise/title/:title', function (req, res) {
+  try {
+    const requestedTitle = req.params.title;
+    getBookListWithPromise("http://localhost:5000/title/" + requestedTitle) 
+      .then(book => {
+        res.json(book);
+      })
+      .catch(error => {
+        console.error(error);
+        res.status(500).json({ message: "Error retrieving book details" });
+      });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Unexpected error" });
+  }
+});
+
+// Task-13 With Async
+public_users.get('/async/title/:title', async function (req, res) {
+  try {
+    const requestedTitle = req.params.title;
+    const book = await getBookListAsync("http://localhost:5000/title/" + requestedTitle);
+    res.json(book);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving book details" });
+  }
+});
+
+
 module.exports.general = public_users;
