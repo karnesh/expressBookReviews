@@ -228,7 +228,7 @@ public_users.get('/async/author/:author', async function (req, res) {
 public_users.get('/promise/title/:title', function (req, res) {
   try {
     const requestedTitle = req.params.title;
-    getBookListWithPromise("http://localhost:5000/title/" + requestedTitle) 
+    getBookListWithPromise("http://localhost:8000/title/" + requestedTitle) 
       .then(book => {
         res.json(book);
       })
@@ -246,7 +246,7 @@ public_users.get('/promise/title/:title', function (req, res) {
 public_users.get('/async/title/:title', async function (req, res) {
   try {
     const requestedTitle = req.params.title;
-    const book = await getBookListAsync("http://localhost:5000/title/" + requestedTitle);
+    const book = await getBookListAsync("http://localhost:8000/title/" + requestedTitle);
     res.json(book);
   } catch (error) {
     console.error(error);
